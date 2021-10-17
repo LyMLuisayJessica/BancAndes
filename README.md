@@ -1,6 +1,6 @@
 # COSAS QUE HACER
 
-* Lo de la creación de las tablas no se si  se hace en un script como en el ejemplo o what
+* Lo de la creación de las tablas no se si  se hace en un script como en el ejemplo o what pero al final lo intenté hacer.
 
 * Interfaz (en resources esta el json de la interfaz)
 
