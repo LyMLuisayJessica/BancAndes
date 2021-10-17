@@ -1,4 +1,3 @@
-# CON DATOS DEL LOGIN
 # COSAS QUE HACER
 
 * Insertar datos (intentar la insercion de datos con archivos de sql normales y despues pasarlos a java)
@@ -8,6 +7,7 @@
 * Capa de negocio
 * Persistencia (si se cambia el nombre en TablasBD_a.json, los nombres de los atributos tienen que ser los mismos de los de la clase en java)
 * Documento
+* Extra si hay timepo: poner check en la tabla de usuario en tipo de documento
 
 
 # DONE
