@@ -6,8 +6,6 @@ public interface VOOficina {
 
 	public String getDireccion();
 
-	public String getPuntos_de_atencion();
-
 	public String getNombre_Banco();
 	
 

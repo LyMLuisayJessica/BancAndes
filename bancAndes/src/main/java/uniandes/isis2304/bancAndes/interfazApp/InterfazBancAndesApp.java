@@ -46,6 +46,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
 import uniandes.isis2304.bancAndes.negocio.BancAndes;
+import uniandes.isis2304.bancAndes.negocio.VOCajero;
 import uniandes.isis2304.bancAndes.negocio.VOTipoBebida;
 import uniandes.isis2304.bancAndes.negocio.VOUsuario;
 
@@ -294,8 +295,6 @@ public class InterfazBancAndesApp extends JFrame implements ActionListener
     		    		&& (tipoDocId.getSelectedItem()!= null)&& (numDocId.getText()!= null)&& (dirFisica.getText()!= null)&& (dirElec.getText()!= null)&& (telefono.getText()!= null)
     		    		&& (nacionalidad.getText()!= null)&& (ciudad.getText()!= null)&& (departamento.getText()!= null)&& (codigoPostal.getText()!= null)
     		    		&& (banco.getText()!= null)) {
-
-    		    	System.out.println(rol.getSelectedItem().toString());
     		    	
     		    	VOUsuario u = bancAndes.adicionarUsuario(login.getText(), palabraClave.getText(), rol.getSelectedItem().toString(), nombre.getText(), tipoDocId.getSelectedItem().toString(), Integer.valueOf(numDocId.getText()), 
     		    			dirFisica.getText(), dirElec.getText(), Integer.valueOf(telefono.getText()), nacionalidad.getText(), ciudad.getText(), departamento.getText(), Integer.valueOf(codigoPostal.getText()), banco.getText());	
@@ -341,7 +340,11 @@ public class InterfazBancAndesApp extends JFrame implements ActionListener
     		
     		if ((tipo.getSelectedItem().toString()=="Cajero")||(tipo.getSelectedItem().toString()=="Cajero Automatico")) {
         		String localizacion = JOptionPane.showInputDialog (this, "localizacion?", "Agregar Cajero", JOptionPane.QUESTION_MESSAGE);
+        		String oficina = JOptionPane.showInputDialog (this, "localizacion?", "Agregar Cajero", JOptionPane.QUESTION_MESSAGE);
+
         		if ((tipo.getSelectedItem().toString()=="Cajero")&&(localizacion != null)) {
+        			//Crear cajero
+        			VOCajero c = adiccionarCajero
         			//Crear cajeroFuncionario
         		}
         		else if (tipo.getSelectedItem().toString()=="Cajero Automatico") {

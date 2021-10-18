@@ -41,7 +41,7 @@ class SQLUtil
 	/**
 	 * El manejador de persistencia general de la aplicación
 	 */
-	private PersistenciaBancAndes pp;
+	private PersistenciaBancAndes bp;
 
 	/* ****************************************************************
 	 * 			Métodos
@@ -53,7 +53,7 @@ class SQLUtil
 	 */
 	public SQLUtil (PersistenciaBancAndes pp)
 	{
-		this.pp = pp;
+		this.bp = pp;
 	}
 	
 	/**
@@ -63,7 +63,7 @@ class SQLUtil
 	 */
 	public long nextval (PersistenceManager pm)
 	{
-        Query q = pm.newQuery(SQL, "SELECT "+ pp.darSeqParranderos () + ".nextval FROM DUAL");
+        Query q = pm.newQuery(SQL, "SELECT "+ bp.darSeqBancAndes() + ".nextval FROM DUAL");
         q.setResultClass(Long.class);
         long resp = (long) q.executeUnique();
         return resp;
@@ -77,13 +77,13 @@ class SQLUtil
 	 */
 	public long [] limpiarParranderos (PersistenceManager pm)
 	{
-        Query qGustan = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaGustan ());          
-        Query qSirven = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaSirven ());
-        Query qVisitan = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaVisitan ());
-        Query qBebida = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaBebida ());
-        Query qTipoBebida = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaTipoBebida ());
-        Query qBebedor = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaBebedor ());
-        Query qBar = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaBar ());
+        Query qGustan = pm.newQuery(SQL, "DELETE FROM " + bp.darTablaGustan ());          
+        Query qSirven = pm.newQuery(SQL, "DELETE FROM " + bp.darTablaSirven ());
+        Query qVisitan = pm.newQuery(SQL, "DELETE FROM " + bp.darTablaVisitan ());
+        Query qBebida = pm.newQuery(SQL, "DELETE FROM " + bp.darTablaBebida ());
+        Query qTipoBebida = pm.newQuery(SQL, "DELETE FROM " + bp.darTablaTipoBebida ());
+        Query qBebedor = pm.newQuery(SQL, "DELETE FROM " + bp.darTablaBebedor ());
+        Query qBar = pm.newQuery(SQL, "DELETE FROM " + bp.darTablaBar ());
 
         long gustanEliminados = (long) qGustan.executeUnique ();
         long sirvenEliminados = (long) qSirven.executeUnique ();

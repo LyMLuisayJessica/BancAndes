@@ -51,7 +51,7 @@
 			[
 				{
 					"label": "Registrar",
-					"event": "ingresarUsuario"
+					"event": "ingresarPuntoAtencion"
 				}
 			]
 		},

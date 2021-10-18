@@ -35,7 +35,9 @@ import com.google.gson.JsonObject;
 import uniandes.isis2304.bancAndes.negocio.Bar;
 import uniandes.isis2304.bancAndes.negocio.Bebedor;
 import uniandes.isis2304.bancAndes.negocio.Bebida;
+import uniandes.isis2304.bancAndes.negocio.Cajero;
 import uniandes.isis2304.bancAndes.negocio.Gustan;
+import uniandes.isis2304.bancAndes.negocio.PuestosDeAtencion;
 import uniandes.isis2304.bancAndes.negocio.Sirven;
 import uniandes.isis2304.bancAndes.negocio.TipoBebida;
 import uniandes.isis2304.bancAndes.negocio.Usuario;
@@ -90,6 +92,58 @@ public class PersistenciaBancAndes
 	/**
 	 * Atributo para el acceso a la tabla Usuario de la base de datos
 	 */
+	private SQLUsuario sqlUsuario;
+	
+	/**
+	 * Atributo para el acceso a la tabla PUESTODEATENCION de la base de datos
+	 */
+	private SQLPuestoDeAtencion sqlPuestoDeAtencion;
+	
+	/**
+	 * Atributo para el acceso a la tabla CAJERO de la base de datos
+	 */
+	private SQLCajero sqlCajero;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * Atributo para el acceso a la tabla Usuario de la base de datos
+	 */
 	private SQLTipoBebida sqlTipoBebida;
 	
 	/**
@@ -97,15 +151,7 @@ public class PersistenciaBancAndes
 	 */
 	private SQLBebida sqlBebida;
 	
-	/**
-	 * Atributo para el acceso a la tabla Usuario de la base de datos
-	 */
-	private SQLUsuario sqlUsuario;
-	
-	/**
-	 * Atributo para el acceso a la tabla BEBIDA de la base de datos
-	 */
-	private SQLBebedor sqlBebedor;
+
 	
 	/**
 	 * Atributo para el acceso a la tabla GUSTAN de la base de datos
@@ -235,10 +281,11 @@ public class PersistenciaBancAndes
 	 */
 	private void crearClasesSQL ()
 	{
-		sqlTipoBebida = new SQLTipoBebida(this);
-		sqlBebida = new SQLBebida(this);
+		sqlPuestoDeAtencion = new SQLPuestoDeAtencion(this);
 		sqlUsuario = new SQLUsuario(this);
-		sqlBebedor = new SQLBebedor(this);
+		sqlCajero = new SQLCajero(this);
+
+		sqlBebida = new SQLBebida(this);
 		sqlGustan = new SQLGustan(this);
 		sqlSirven = new SQLSirven (this);
 		sqlVisitan = new SQLVisitan(this);		
@@ -248,7 +295,7 @@ public class PersistenciaBancAndes
 	/**
 	 * @return La cadena de caracteres con el nombre del secuenciador de parranderos
 	 */
-	public String darSeqParranderos ()
+	public String darSeqBancAndes ()
 	{
 		return tablas.get (0);
 	}
@@ -445,6 +492,154 @@ public class PersistenciaBancAndes
         }
 	}
 
+	/*
+	 * Adiciona un puesto de atencion
+	 */
+	public PuestosDeAtencion adicionarPuestoDeAtencion(long idPuesto, String bancAndes)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long tuplasInsertadas = sqlPuestoDeAtencion.adicionarPuestoDeAtencion(pm, idPuesto, bancAndes);
+            tx.commit();
+            
+            log.trace ("Inserción de puesto de Atencion # " + idPuesto + ": " + tuplasInsertadas + " tuplas insertadas");
+            
+            return new PuestosDeAtencion(idPuesto, bancAndes);
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	/*
+	 * Adiciona un Cajero
+	 */
+	public Cajero adicionarCajero( String localizacion, String oficina, String bancAndes) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long idPuesto = nextval ();
+            PuestosDeAtencion puesto = adicionarPuestoDeAtencion(idPuesto, bancAndes);
+            long tuplasInsertadas = sqlCajero.adicionarTipoBebida(pm, idPuesto, bancAndes);
+            tx.commit();
+            
+            log.trace ("Inserción Cajero # " + idPuesto + ": " + tuplasInsertadas + " tuplas insertadas");
+            
+            return new Cajero(idPuesto,localizacion, oficina);
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * Método que elimina, de manera transaccional, una tupla en la tabla TipoBebida, dado el nombre del tipo de bebida
 	 * Adiciona entradas al log de la aplicación

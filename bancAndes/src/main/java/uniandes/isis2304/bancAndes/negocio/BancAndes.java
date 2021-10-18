@@ -96,7 +96,7 @@ public class BancAndes
 	 * Adiciona entradas al log de la aplicación
 	 * @return El objeto TipoBebida adicionado. null si ocurre alguna Excepción
 	 */
-	public Oficina adicionarOficina (String login, String palabra_Clave, String rol, String nombre, String tipo_Doc_Identificacion,
+	public Usuario adicionarOficina (String login, String palabra_Clave, String rol, String nombre, String tipo_Doc_Identificacion,
 			Integer numero_Doc_Identificacion, String direccion_Fisica, String direccion_Electronica, Integer telefono,
 			String nacionalidad, String ciudad, String departamento, Integer codigo_Postal, String bancAndes)
 	{
@@ -105,6 +105,98 @@ public class BancAndes
         log.info ("Adicionando usuario: " + usuario);
         return usuario;
 	}
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar los PUESTOS DE ATENCION
+	 *****************************************************************/
+	/**
+	 * Adiciona de manera persistente un Cajero
+	 * Adiciona entradas al log de la aplicación
+	 */
+	public Cajero adicionarCajero (String localizacion, String oficina, String bancAndes) 
+	{
+        log.info ("Adicionando Cajero con localizacion: " + localizacion);
+        Cajero usuario = pb.adicionarCajero(localizacion, oficina, bancAndes) ;		
+        log.info ("Adicionando usuario: " + usuario);
+        return usuario;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * Elimina un tipo de bebida por su nombre
 	 * Adiciona entradas al log de la aplicación
