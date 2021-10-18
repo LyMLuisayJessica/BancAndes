@@ -9,20 +9,8 @@
 		  "options":
 			[
 				{
-					"label": "Ingresar",
-					"event": "ingresarUsuario"
-				},
-				{
-					"label": "Salir",
-					"event": "listarTipoBebida"
-				},
-				{
-					"label": "Informacion",
-					"event": "eliminarTipoBebidaPorId"
-				},
-				{
 					"label": "Registrar nuevo",
-					"event": "eliminarTipoBebidaPorId"
+					"event": "ingresarUsuario"
 				}	
 				,
 				{

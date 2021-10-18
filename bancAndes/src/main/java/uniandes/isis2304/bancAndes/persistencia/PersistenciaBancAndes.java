@@ -38,6 +38,7 @@ import uniandes.isis2304.bancAndes.negocio.Bebida;
 import uniandes.isis2304.bancAndes.negocio.Gustan;
 import uniandes.isis2304.bancAndes.negocio.Sirven;
 import uniandes.isis2304.bancAndes.negocio.TipoBebida;
+import uniandes.isis2304.bancAndes.negocio.Usuario;
 import uniandes.isis2304.bancAndes.negocio.Visitan;
 
 /**
@@ -82,12 +83,12 @@ public class PersistenciaBancAndes
 	private List <String> tablas;
 	
 	/**
-	 * Atributo para el acceso a las sentencias SQL propias a PersistenciaParranderos
+	 * Atributo para el acceso a las sentencias SQL propias a PersistenciaBancAndes
 	 */
 	private SQLUtil sqlUtil;
 	
 	/**
-	 * Atributo para el acceso a la tabla TIPOBEBIDA de la base de datos
+	 * Atributo para el acceso a la tabla Usuario de la base de datos
 	 */
 	private SQLTipoBebida sqlTipoBebida;
 	
@@ -97,9 +98,9 @@ public class PersistenciaBancAndes
 	private SQLBebida sqlBebida;
 	
 	/**
-	 * Atributo para el acceso a la tabla BAR de la base de datos
+	 * Atributo para el acceso a la tabla Usuario de la base de datos
 	 */
-	private SQLBar sqlBar;
+	private SQLUsuario sqlUsuario;
 	
 	/**
 	 * Atributo para el acceso a la tabla BEBIDA de la base de datos
@@ -236,7 +237,7 @@ public class PersistenciaBancAndes
 	{
 		sqlTipoBebida = new SQLTipoBebida(this);
 		sqlBebida = new SQLBebida(this);
-		sqlBar = new SQLBar(this);
+		sqlUsuario = new SQLUsuario(this);
 		sqlBebedor = new SQLBebedor(this);
 		sqlGustan = new SQLGustan(this);
 		sqlSirven = new SQLSirven (this);
@@ -251,65 +252,130 @@ public class PersistenciaBancAndes
 	{
 		return tablas.get (0);
 	}
-
-	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de TipoBebida de parranderos
-	 */
-	public String darTablaTipoBebida ()
+	
+	public String darTablaAccion ()
 	{
 		return tablas.get (1);
 	}
-
-	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de Bebida de parranderos
-	 */
-	public String darTablaBebida ()
+	
+	public String darTablaBancAndes()
 	{
 		return tablas.get (2);
 	}
-
-	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de Bar de parranderos
-	 */
-	public String darTablaBar ()
+	
+	public String darTablaPuestosDeAtencion()
 	{
 		return tablas.get (3);
 	}
-
-	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de Bebedor de parranderos
-	 */
-	public String darTablaBebedor ()
+	
+	public String darTablaOficina ()
 	{
 		return tablas.get (4);
 	}
-
-	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de Gustan de parranderos
-	 */
-	public String darTablaGustan ()
+	
+	public String darTablaCajero()
 	{
 		return tablas.get (5);
 	}
-
-	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de Sirven de parranderos
-	 */
-	public String darTablaSirven ()
+	
+	public String darTablaCajeroAutomatico()
 	{
 		return tablas.get (6);
 	}
-
-	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de Visitan de parranderos
-	 */
-	public String darTablaVisitan ()
+	
+	public String darTablaWeb()
 	{
 		return tablas.get (7);
 	}
 	
+	public String darTablaAppMovil()
+	{
+		return tablas.get (8);
+	}
+	
+	public String darTablaUsuario()
+	{
+		return tablas.get (9);
+	}
+	
+	public String darTablaCajeroFuncionario()
+	{
+		return tablas.get (10);
+	}
+	
+	public String darTablaGerenteOficina()
+	{
+		return tablas.get (11);
+	}
+	
+	public String darTablaCliente()
+	{
+		return tablas.get (12);
+	}
+	
+	public String darTablaGerenteGeneral()
+	{
+		return tablas.get (13);
+	}
+	
+	public String darTablaCuenta ()
+	{
+		return tablas.get (14);
+	}
+	
+	public String darTablaCDT ()
+	{
+		return tablas.get (15);
+	}
+	
+	public String darTablaAFC ()
+	{
+		return tablas.get (16);
+	}
+	
+	public String darTablaAhorros ()
+	{
+		return tablas.get (17);
+	}
+	
+	public String darTablaDepositoDeInv ()
+	{
+		return tablas.get (18);
+	}
+	
+	public String darTablaCorriente ()
+	{
+		return tablas.get (19);
+	}
+	
+	public String darTablaPrestamo ()
+	{
+		return tablas.get (20);
+	}
+	
+	public String darTablaOperaccionBancaria ()
+	{
+		return tablas.get (21);
+	}
+	
+	public String darTablaIntercuentas ()
+	{
+		return tablas.get (22);
+	}
+	
+	public String darTablaUniCuenta ()
+	{
+		return tablas.get (23);
+	}
+	
+	public String darTablaDividendo ()
+	{
+		return tablas.get (24);
+	}
+	
+	
 	/**
-	 * Transacción para el generador de secuencia de Parranderos
+	 * Transacción para el generador de secuencia de BancAndes
 	 * Adiciona entradas al log de la aplicación
 	 * @return El siguiente número del secuenciador de Parranderos
 	 */
@@ -337,29 +403,31 @@ public class PersistenciaBancAndes
 	}
 
 	/* ****************************************************************
-	 * 			Métodos para manejar los TIPOS DE BEBIDA
+	 * 			Métodos para manejar los USUARIOS
 	 *****************************************************************/
 
 	/**
-	 * Método que inserta, de manera transaccional, una tupla en la tabla TipoBebida
+	 * Método que inserta, de manera transaccional, una tupla en la tabla Usuario
 	 * Adiciona entradas al log de la aplicación
-	 * @param nombre - El nombre del tipo de bebida
 	 * @return El objeto TipoBebida adicionado. null si ocurre alguna Excepción
 	 */
-	public TipoBebida adicionarTipoBebida(String nombre)
+	public Usuario adicionarUsuario (String login, String palabra_Clave, String rol, String nombre, String tipo_Doc_Identificacion,
+			Integer numero_Doc_Identificacion, String direccion_Fisica, String direccion_Electronica, Integer telefono,
+			String nacionalidad, String ciudad, String departamento, Integer codigo_Postal, String bancAndes)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
         try
         {
             tx.begin();
-            long idTipoBebida = nextval ();
-            long tuplasInsertadas = sqlTipoBebida.adicionarTipoBebida(pm, idTipoBebida, nombre);
+            long tuplasInsertadas = sqlUsuario.adicionarUsuario( pm, login, palabra_Clave, rol, nombre, tipo_Doc_Identificacion,numero_Doc_Identificacion, direccion_Fisica, 
+                    direccion_Electronica, telefono, nacionalidad, ciudad, departamento, codigo_Postal, bancAndes) ;
             tx.commit();
             
-            log.trace ("Inserción de tipo de bebida: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+            log.trace ("Inserción del usuario: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
             
-            return new TipoBebida (idTipoBebida, nombre);
+            return new Usuario ( login, palabra_Clave, rol, nombre, tipo_Doc_Identificacion,numero_Doc_Identificacion, direccion_Fisica, 
+                    direccion_Electronica, telefono, nacionalidad, ciudad, departamento, codigo_Postal, bancAndes) ;
         }
         catch (Exception e)
         {
@@ -985,179 +1053,7 @@ public class PersistenciaBancAndes
 		return gustan;
 	}
 	
-	/* ****************************************************************
-	 * 			Métodos para manejar los BARES
-	 *****************************************************************/
 	
-	/**
-	 * Método que inserta, de manera transaccional, una tupla en la tabla BAR
-	 * Adiciona entradas al log de la aplicación
-	 * @param nombre - El nombre del bar
-	 * @param ciudad - La ciudad del bar
-	 * @param presupuesto - El presupuesto del bar (ALTO, MEDIO, BAJO)
-	 * @param sedes - El número de sedes del bar en la ciudad (Mayor que 0)
-	 * @return El objeto Bar adicionado. null si ocurre alguna Excepción
-	 */
-	public Bar adicionarBar(String nombre, String ciudad, String presupuesto, int sedes) 
-	{
-		PersistenceManager pm = pmf.getPersistenceManager();
-        Transaction tx=pm.currentTransaction();
-        try
-        {
-            tx.begin();
-            long idBar = nextval ();
-            long tuplasInsertadas = sqlBar.adicionarBar(pm, idBar, nombre, ciudad, presupuesto, sedes);
-            tx.commit();
-
-            log.trace ("Inserción de Bar: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
-
-            return new Bar (idBar, nombre, ciudad, presupuesto, sedes);
-        }
-        catch (Exception e)
-        {
-//        	e.printStackTrace();
-        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-        	return null;
-        }
-        finally
-        {
-            if (tx.isActive())
-            {
-                tx.rollback();
-            }
-            pm.close();
-        }
-	}
-
-	/**
-	 * Método que elimina, de manera transaccional, una tupla en la tabla BAR, dado el nombre del bar
-	 * Adiciona entradas al log de la aplicación
-	 * @param nombreBar - El nombre del bar
-	 * @return El número de tuplas eliminadas. -1 si ocurre alguna Excepción
-	 */
-	public long eliminarBarPorNombre (String nombreBar) 
-	{
-		PersistenceManager pm = pmf.getPersistenceManager();
-        Transaction tx=pm.currentTransaction();
-        try
-        {
-            tx.begin();
-            long resp = sqlBar.eliminarBaresPorNombre(pm, nombreBar);
-            tx.commit();
-
-            return resp;
-        }
-        catch (Exception e)
-        {
-//        	e.printStackTrace();
-        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-            return -1;
-        }
-        finally
-        {
-            if (tx.isActive())
-            {
-                tx.rollback();
-            }
-            pm.close();
-        }
-	}
-
-	/**
-	 * Método que elimina, de manera transaccional, una tupla en la tabla BAR, dado el identificador del bar
-	 * Adiciona entradas al log de la aplicación
-	 * @param idBar - El identificador del bar
-	 * @return El número de tuplas eliminadas. -1 si ocurre alguna Excepción
-	 */
-	public long eliminarBarPorId (long idBar) 
-	{
-		PersistenceManager pm = pmf.getPersistenceManager();
-        Transaction tx=pm.currentTransaction();
-        try
-        {
-            tx.begin();
-            long resp = sqlBar.eliminarBarPorId (pm, idBar);
-            tx.commit();
-
-            return resp;
-        }
-        catch (Exception e)
-        {
-//        	e.printStackTrace();
-        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-            return -1;
-        }
-        finally
-        {
-            if (tx.isActive())
-            {
-                tx.rollback();
-            }
-            pm.close();
-        }
-	}
-
-	/**
-	 * Método que consulta todas las tuplas en la tabla BAR
-	 * @return La lista de objetos BAR, construidos con base en las tuplas de la tabla BAR
-	 */
-	public List<Bar> darBares ()
-	{
-		return sqlBar.darBares (pmf.getPersistenceManager());
-	}
- 
-	/**
-	 * Método que consulta todas las tuplas en la tabla BAR que tienen el nombre dado
-	 * @param nombreBar - El nombre del bar
-	 * @return La lista de objetos BAR, construidos con base en las tuplas de la tabla BAR
-	 */
-	public List<Bar> darBaresPorNombre (String nombreBar)
-	{
-		return sqlBar.darBaresPorNombre (pmf.getPersistenceManager(), nombreBar);
-	}
- 
-	/**
-	 * Método que consulta todas las tuplas en la tabla BAR que tienen el identificador dado
-	 * @param idBar - El identificador del bar
-	 * @return El objeto BAR, construido con base en la tuplas de la tabla BAR, que tiene el identificador dado
-	 */
-	public Bar darBarPorId (long idBar)
-	{
-		return sqlBar.darBarPorId (pmf.getPersistenceManager(), idBar);
-	}
- 
-	/**
-	 * Método que actualiza, de manera transaccional, aumentando en 1 el número de sedes de todos los bares de una ciudad
-	 * @param ciudad - La ciudad que se quiere modificar
-	 * @return El número de tuplas modificadas. -1 si ocurre alguna Excepción
-	 */
-	public long aumentarSedesBaresCiudad (String ciudad)
-	{
-		PersistenceManager pm = pmf.getPersistenceManager();
-        Transaction tx=pm.currentTransaction();
-        try
-        {
-            tx.begin();
-            long resp = sqlBar.aumentarSedesBaresCiudad(pm, ciudad);
-            tx.commit();
-
-            return resp;
-        }
-        catch (Exception e)
-        {
-//        	e.printStackTrace();
-        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-            return -1;
-        }
-        finally
-        {
-            if (tx.isActive())
-            {
-                tx.rollback();
-            }
-            pm.close();
-        }
-	}
 	
 	/* ****************************************************************
 	 * 			Métodos para manejar la relación GUSTAN

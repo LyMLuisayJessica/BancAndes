@@ -10,7 +10,7 @@ public class Usuario implements VOUsuario {
 	private Integer numero_Doc_Identificacion;
 	private String direccion_Fisica;
 	private String direccion_Electronica;
-	private String telefono;
+	private Integer telefono;
 	private String nacionalidad;
 	private String ciudad;
 	private String departamento;
@@ -19,7 +19,7 @@ public class Usuario implements VOUsuario {
 	
 	
 	public Usuario(String login, String palabra_Clave, String rol, String nombre, String tipo_Doc_Identificacion,
-				Integer numero_Doc_Identificacion, String direccion_Fisica, String direccion_Electronica, String telefono,
+				Integer numero_Doc_Identificacion, String direccion_Fisica, String direccion_Electronica, Integer telefono,
 				String nacionalidad, String ciudad, String departamento, Integer codigo_Postal, String bancAndes) {
 			super();
 			this.login = login;
@@ -119,12 +119,12 @@ public class Usuario implements VOUsuario {
 	}
 
 
-	public String getTelefono() {
+	public Integer getTelefono() {
 		return telefono;
 	}
 
 
-	public void setTelefono(String telefono) {
+	public void setTelefono(Integer telefono) {
 		this.telefono = telefono;
 	}
 

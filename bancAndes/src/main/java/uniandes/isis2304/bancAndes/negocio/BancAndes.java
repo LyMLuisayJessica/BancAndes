@@ -71,35 +71,40 @@ public class BancAndes
 	/* ****************************************************************
 	 * 			Métodos para manejar los USUARIOS
 	 *****************************************************************/
-
-	/**
-	 * Encuentra el tipos de bebida en Parranderos con el nombre solicitado
-	 * Adiciona entradas al log de la aplicación
-	 * @param nombre - El nombre de la bebida
-	 * @return Un objeto TipoBebida con el tipos de bebida de ese nombre que conoce la aplicación, 
-	 * lleno con su información básica
-	 */
-	public Usuario accederUsuario (String login, String palabraClave)
-	{
-		log.info ("Buscando Usuario: " + login);
-		List<Usuario> tb = pb.darTipoBebidaPorNombre (nombre);
-		return !tb.isEmpty () ? tb.get (0) : null;
-	}
 	
 	/**
-	 * Adiciona de manera persistente un tipo de bebida 
+	 * Adiciona de manera persistente un Usuario
 	 * Adiciona entradas al log de la aplicación
-	 * @param nombre - El nombre del tipo de bebida
 	 * @return El objeto TipoBebida adicionado. null si ocurre alguna Excepción
 	 */
-	public TipoBebida adicionarTipoBebida (String nombre)
+	public Usuario adicionarUsuario (String login, String palabra_Clave, String rol, String nombre, String tipo_Doc_Identificacion,
+			Integer numero_Doc_Identificacion, String direccion_Fisica, String direccion_Electronica, Integer telefono,
+			String nacionalidad, String ciudad, String departamento, Integer codigo_Postal, String bancAndes)
 	{
-        log.info ("Adicionando Tipo de bebida: " + nombre);
-        TipoBebida tipoBebida = pb.adicionarTipoBebida (nombre);		
-        log.info ("Adicionando Tipo de bebida: " + tipoBebida);
-        return tipoBebida;
+        log.info ("Adicionando Usuario: " + login);
+        Usuario usuario = pb.adicionarUsuario(login, palabra_Clave, rol, nombre, tipo_Doc_Identificacion, numero_Doc_Identificacion, 
+        		direccion_Fisica, direccion_Electronica, telefono, nacionalidad, ciudad, departamento, codigo_Postal, bancAndes);		
+        log.info ("Adicionando usuario: " + usuario);
+        return usuario;
 	}
 	
+	/* ****************************************************************
+	 * 			Métodos para manejar las OFICINAS
+	 *****************************************************************/
+	/**
+	 * Adiciona de manera persistente una Oficina
+	 * Adiciona entradas al log de la aplicación
+	 * @return El objeto TipoBebida adicionado. null si ocurre alguna Excepción
+	 */
+	public Oficina adicionarOficina (String login, String palabra_Clave, String rol, String nombre, String tipo_Doc_Identificacion,
+			Integer numero_Doc_Identificacion, String direccion_Fisica, String direccion_Electronica, Integer telefono,
+			String nacionalidad, String ciudad, String departamento, Integer codigo_Postal, String bancAndes)
+	{
+        log.info ("Adicionando Usuario: " + login);
+        Usuario usuario = pb.adicionarUsuario(login, palabra_Clave, rol, nombre, tipo_Doc_Identificacion, numero_Doc_Identificacion, direccion_Fisica, direccion_Electronica, telefono, nacionalidad, ciudad, departamento, codigo_Postal, bancAndes);		
+        log.info ("Adicionando usuario: " + usuario);
+        return usuario;
+	}
 	/**
 	 * Elimina un tipo de bebida por su nombre
 	 * Adiciona entradas al log de la aplicación

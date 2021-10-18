@@ -1,15 +1,32 @@
 {
-	"title": "Nombres de las tablas de Parranderos Uniandes para la aplicación B",
-	"unidadPersistencia": "Parranderos",
+	"title": "Nombres de las tablas de BancAndes Uniandes",
+	"unidadPersistencia": "BancAndes",
 	"tablas":
 	[
-		"Parranderos_sequence",
-		"B_TIPOBEBIDA",
-		"B_BEBIDA",
-		"B_BAR",
-		"B_BEBEDOR",
-		"B_GUSTAN",
-		"B_SIRVEN",
-		"B_VISITAN"
+		"bacAndes_sequence",
+		"Accion",
+		"BancAndes",
+		"PuestosDeAtencion",
+		"Oficina",
+		"Cajero",
+		"CajeroAutomatico",
+		"AppMovil",
+		"Web",
+		"Usuario",
+		"CajeroFuncionario",
+		"Cliente",
+		"GerenteOficina",
+		"GerenteGeneral",
+		"Cuenta",
+		"CDT",
+		"AFC",
+		"DepositoDeInversion",
+		"Ahorros",
+		"Corriente",
+		"Prestamo",
+		"OperacionBancaria",
+		"Intercuentas",
+		"Unicuenta",
+		"Dividendo"
 	]
 }

@@ -25,7 +25,7 @@ public interface VOUsuario {
 
 	public String getDireccion_Electronica();
 
-	public String getTelefono();
+	public Integer getTelefono();
 
 	public String getNacionalidad();
 

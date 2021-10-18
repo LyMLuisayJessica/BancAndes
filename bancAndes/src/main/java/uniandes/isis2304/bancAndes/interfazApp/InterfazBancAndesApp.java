@@ -27,13 +27,13 @@ import java.util.List;
 
 import javax.jdo.JDODataStoreException;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
@@ -239,33 +239,78 @@ public class InterfazBancAndesApp extends JFrame implements ActionListener
 	 * 			CRUD de Usuario
 	 *****************************************************************/
     /**
-     * Ingresa a la cuenta de un usuario
+     * Ingresa un nuevo usuario
      */
     public void ingresarUsuario( )
     {
     	try 
     	{
-    		JTextField username = new JTextField();
-    		JTextField password = new JPasswordField();
+    		JTextField login = new JTextField();
+    		JTextField palabraClave = new JTextField();
+    		JComboBox<String> rol = new JComboBox<String>();
+    		rol.addItem("Cliente");
+    		rol.addItem("CajeroFuncionario");
+    		rol.addItem("GerenteOficina");
+    		rol.addItem("GerenteGeneral");
+    		JTextField nombre = new JTextField();
+    		JComboBox<String> tipoDocId = new JComboBox<String>();
+    		tipoDocId.addItem("C.C.");
+    		tipoDocId.addItem("T.I.");
+    		tipoDocId.addItem("C.E.");
+    		tipoDocId.addItem("N.I.P.");
+    		tipoDocId.addItem("N.U.I.P.");
+    		tipoDocId.addItem("N.E.S.");
+    		JTextField numDocId = new JTextField();
+    		JTextField dirFisica = new JTextField();
+    		JTextField dirElec = new JTextField();
+    		JTextField telefono = new JTextField();
+    		JTextField nacionalidad = new JTextField();
+    		JTextField ciudad = new JTextField();
+    		JTextField departamento = new JTextField();
+    		JTextField codigoPostal = new JTextField();
+    		JTextField banco = new JTextField();
+
     		String resultado= "En ingresar a usuario\n\n";
     		Object[] message = {
-    		    "Login:", username,
-    		    "Palabra clave:", password
+    		    "Login:", login,
+    		    "Palabra Clave:", palabraClave,
+    		    "Rol:", rol,
+    		    "Nombre:", nombre,
+    		    "Tipo Documento Identidad:", tipoDocId,
+    		    "Numero Documento:", numDocId,
+    		    "Direccion Fisica:", dirFisica,
+    		    "Direccion electronica:", dirElec,
+    		    "Telefono:", telefono,
+    		    "Nacionalidad:", nacionalidad,
+    		    "Ciudad:", ciudad,
+    		    "Departamento:", departamento,
+    		    "Codigo Postal:", codigoPostal,
+    		    "Banco:", banco
     		};
 
     		int option = JOptionPane.showConfirmDialog(null, message, "Login", JOptionPane.OK_CANCEL_OPTION);
     		if (option == JOptionPane.OK_OPTION) {
-    		    if ((username.getText()!=null) && (password.getText()!= null)) {
-    		    	VOUsuario u = bancAndes.accederUsuario(username.getText(), password.getText());
+    		    if ((login.getText()!=null) && (palabraClave.getText()!= null)&& (rol.getSelectedItem()!= null)&& (nombre.getText()!= null)
+    		    		&& (tipoDocId.getSelectedItem()!= null)&& (numDocId.getText()!= null)&& (dirFisica.getText()!= null)&& (dirElec.getText()!= null)&& (telefono.getText()!= null)
+    		    		&& (nacionalidad.getText()!= null)&& (ciudad.getText()!= null)&& (departamento.getText()!= null)&& (codigoPostal.getText()!= null)
+    		    		&& (banco.getText()!= null)) {
+
+    		    	System.out.println(rol.getSelectedItem().toString());
+    		    	
+    		    	VOUsuario u = bancAndes.adicionarUsuario(login.getText(), palabraClave.getText(), rol.getSelectedItem().toString(), nombre.getText(), tipoDocId.getSelectedItem().toString(), Integer.valueOf(numDocId.getText()), 
+    		    			dirFisica.getText(), dirElec.getText(), Integer.valueOf(telefono.getText()), nacionalidad.getText(), ciudad.getText(), departamento.getText(), Integer.valueOf(codigoPostal.getText()), banco.getText());	
     		        if (u == null)
             		{
-            			throw new Exception ("No se pudo acceder al usuario " + username.getText());
+            			throw new Exception ("No se pudo crear al usuario " + login.getText());
             		}
-    		        resultado += "Login exitoso";
+    		        resultado += "Creacion exitosa del usuario";
+    		        
+    		        
+    		        
     		    }
     		    else {
     		    	
-            		resultado += "Login fallido";
+            		resultado += "Creacion fallida";
     		    }
     		}
     		else {
@@ -279,6 +324,92 @@ public class InterfazBancAndesApp extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(resultado);
 		}
     }
+    
+    /* ****************************************************************
+	 * 			CRUD de Puesto de Atencion
+	 *****************************************************************/
+    /**
+     * Ingresa el punto de Atencion nuevo
+     */
+    public void ingresarPuntoAtencion() {
+    	try {
+    		JComboBox<String> tipo = new JComboBox<String>();
+    		tipo.addItem("Cajero");
+    		tipo.addItem("Cajero Automatico");
+    		tipo.addItem("Web");
+    		tipo.addItem("App Movil");
+    		
+    		if ((tipo.getSelectedItem().toString()=="Cajero")||(tipo.getSelectedItem().toString()=="Cajero Automatico")) {
+        		String localizacion = JOptionPane.showInputDialog (this, "localizacion?", "Agregar Cajero", JOptionPane.QUESTION_MESSAGE);
+        		if ((tipo.getSelectedItem().toString()=="Cajero")&&(localizacion != null)) {
+        			//Crear cajeroFuncionario
+        		}
+        		else if (tipo.getSelectedItem().toString()=="Cajero Automatico") {
+        			//Crear cajeroAutomatico
+        		}
+        		else
+        		{
+        			panelDatos.actualizarInterfaz("Datos invalidos");
+        		}
+    		}
+    		else if (tipo.getSelectedItem().toString()=="Web") {
+        		String url = JOptionPane.showInputDialog (this, "URL?", "Agregar Web", JOptionPane.QUESTION_MESSAGE);
+        		//Crear web
+        		}
+    		else if (tipo.getSelectedItem().toString()=="App Movil") {
+        		String nombre = JOptionPane.showInputDialog (this, "Nombre de la App?", "App movil", JOptionPane.QUESTION_MESSAGE);
+        		//Crear web
+        		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Datos invalidos");
+    		}
+    	}
+    	catch (Exception e) 
+    	{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     /**
      * Consulta en la base de datos los tipos de bebida existentes y los muestra en el panel de datos de la aplicación

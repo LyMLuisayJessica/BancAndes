@@ -233,11 +233,14 @@ CREATE TABLE OperacionBancaria
     FECHA DATE NOT NULL,
     CUENTA NUMBER NOT NULL,
     PUESTO_ATENCION NUMBER NOT NULL,
+    PRESTAMO NUMBER NOT NULL,
     CONSTRAINT OperacionBancaria_PK PRIMARY KEY (NUMERO_OPERACION),
     CONSTRAINT CuentaOperacionBancaria_FK FOREIGN KEY (CUENTA)
         REFERENCES Cuenta(ID),
     CONSTRAINT PuestosDeAtencionOperacionBancaria_FK FOREIGN KEY (PUESTO_ATENCION) 
-        REFERENCES PuestosDeAtencion(ID)
+        REFERENCES PuestosDeAtencion(ID),
+    CONSTRAINT PrestamoOperacionBancaria_FK FOREIGN KEY (PRESTAMO) 
+        REFERENCES Prestamo(ID)
 );
 
 CREATE TABLE Intercuentas
