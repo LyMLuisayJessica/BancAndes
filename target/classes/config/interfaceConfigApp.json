@@ -1,0 +1,137 @@
+{
+	"title": "Aplicación transaccional de BancAndes",
+	"frameH": 600,
+	"frameW": 800,
+	"bannerPath": "./src/main/resources/config/logo.png",
+	"menuBar":
+	[
+		{ "menuTitle": "Usuario",
+		  "options":
+			[
+				{
+					"label": "Registrar nuevo",
+					"event": "ingresarUsuario"
+				}	
+				,
+				{
+					"label": "Obtener usuario más activo",
+					"event": "eliminarTipoBebidaPorId"
+				}
+			]
+		},
+		{ "menuTitle": "Cliente",
+		  "options":
+			[
+				{
+					"label": "Consultar cliente",
+					"event": "consultarCliente"
+				}
+				,
+				{
+					"label": "Añadir relacion Juridico-Natural",
+					"event": "adicionarRelacionPago"
+				}
+			]
+		},
+		{ "menuTitle": "Operaciones",
+		  "options":
+			[
+				{
+					"label": "Consultar mayores operaciones",
+					"event": "consultarMayoresOperaciones"
+				},
+				{
+					"label": "Consultar operaciones",
+					"event": "consultarOperacionBancaria"
+				}
+			]
+		},
+		{ "menuTitle": "Oficina",
+		  "options":
+			[
+				{
+					"label": "Registrar",
+					"event": "ingresarOficina"
+				}
+			]
+		},
+		{ "menuTitle": "Punto de atención",
+		  "options":
+			[
+				{
+					"label": "Registrar",
+					"event": "ingresarPuntoAtencion"
+				}
+			]
+		},
+		{ "menuTitle": "Cuenta",
+		  "options":
+			[
+				{
+					"label": "Registrar",
+					"event": "ingresarCuenta"
+				},
+				{
+					"label": "Cerrar",
+					"event": "cerrarCuenta"
+				},
+				{
+					"label": "Registrar operacion",
+					"event": "registrarOperacionBancaria"
+				},
+				{
+					"label": "Consultar cuentas",
+					"event": "consultarCuentas"
+				}
+			]
+		},
+		{ "menuTitle": "Prestamo",
+		  "options":
+			[
+				{
+					"label": "Registrar",
+					"event": "ingresarPrestamo"
+				},
+				{
+					"label": "Cerrar",
+					"event": "cerrarPrestamo"
+				},
+				{
+					"label": "Registrar operacion",
+					"event": "registrarOperacionPrestamo"
+				},
+				{
+					"label": "Consultar",
+					"event": "consultarPrestamos"
+				}				
+			]
+		},
+		{ "menuTitle": "Mantenimiento",
+		  "options":
+			[
+				{
+					"label": "Mostrar log Parranderos",
+					"event": "mostrarLogParranderos"
+				},
+				{
+					"label": "Mostrar log datanucleus",
+					"event": "mostrarLogDatanuecleus"
+				},
+				{
+					"label": "Limpiar log de parranderos",
+					"event": "limpiarLogParranderos"
+				},
+				{
+					"label": "Limpiar log de datanucleus",
+					"event": "limpiarLogDatanucleus"
+				},
+				{
+					"label": "Limpiar Base de Datos",
+					"event": "limpiarBD"
+				}
+			]
+		}		
+		
+	]
+}
+	

@@ -1,0 +1,34 @@
+{
+	"title": "Nombres de las tablas de BancAndes Uniandes",
+	"unidadPersistencia": "BancAndes",
+	"tablas":
+	[
+		"bancAndes_sequence",
+		"Accion",
+		"BancAndes",
+		"PuestosDeAtencion",
+		"Oficina",
+		"Cajero",
+		"CajeroAutomatico",
+		"AppMovil",
+		"Web",
+		"Usuario",
+		"CajeroFuncionario",
+		"Cliente",
+		"GerenteOficina",
+		"GerenteGeneral",
+		"Cuenta",
+		"CDT",
+		"AFC",
+		"DepositoDeInversion",
+		"Ahorros",
+		"Corriente",
+		"Prestamo",
+		"OperacionBancaria",
+		"Intercuentas",
+		"Unicuenta",
+		"Dividendo",
+		"Paga_A"
+		
+	]
+}
